@@ -2,15 +2,15 @@
 
 
 
+import 'package:cleancodeprovider/features/auth/data/Respository/AttractionDetailRepository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import '../../data/data_source/attraction_api_services.dart';
 import '../../data/data_source/attractiondetail_api_services.dart';
 import '../../domain/models/attraction_detail_entity.dart';
 
-
 class AttractiondetailViewModel extends ChangeNotifier {
-  final AttractiondetailApiServices services = AttractiondetailApiServices();
+  final attractionDetailRepository _attractionDetailRepository = attractionDetailRepository();
 
   late AttractionDetailEntity _attractionsdetail = AttractionDetailEntity(name: '', url: '', type: '', images: []);
 
@@ -29,7 +29,7 @@ class AttractiondetailViewModel extends ChangeNotifier {
       _loading = true;
       print("I am  now loading");
       //notifyListeners();
-      AttractionDetailEntity fetchedAttractiondetail = await services.getAttractionDetail(id);
+      AttractionDetailEntity fetchedAttractiondetail = await _attractionDetailRepository.getattractionDetaillist(id);
       print('This is fetched view model data:${fetchedAttractiondetail.name}');
       _attractionsdetail = fetchedAttractiondetail;
       _loading = false;

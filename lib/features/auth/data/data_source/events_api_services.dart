@@ -1,4 +1,5 @@
 
+import 'package:cleancodeprovider/constants/const.dart';
 import 'package:cleancodeprovider/core/keys/env.dart';
 import 'package:dio/dio.dart';
 import '../../../../locator/injector.dart';
@@ -17,7 +18,7 @@ final Dio dio;
     try {
 
       final response = await dio.get('events.json');
-      if (response.statusCode == 200|| response.statusCode==304) {
+      if (response.statusCode == DIO_SUCCESS|| response.statusCode==DIO_CACHE) {
         print('GotResponse: ${response.data}');
         return EventsEntity.fromJson(response.data);
 

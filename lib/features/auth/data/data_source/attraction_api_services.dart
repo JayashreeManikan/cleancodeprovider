@@ -1,5 +1,6 @@
 
 import 'package:dio/dio.dart';
+import '../../../../constants/const.dart';
 import '../../../../core/keys/env.dart';
 import '../../domain/models/attraction_detail_entity.dart';
 import '../../domain/models/attractions_entity.dart';
@@ -15,7 +16,7 @@ class AttractionApiServices {
 
     try {
       final response = await dio.get('attractions.json');
-      if (response.statusCode == 200||response.statusCode==304) {
+      if (response.statusCode == DIO_SUCCESS||response.statusCode==DIO_CACHE) {
         print('GotResponse: ${response.data}');
         return AttractionsEntity.fromJson(response.data);
       } else {

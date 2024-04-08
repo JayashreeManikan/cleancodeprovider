@@ -1,7 +1,5 @@
-const EVENTS_LIST = 'https://app.ticketmaster.com/discovery/v2/events.json';
-//Errors
+const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 
-const EVENT_INVALID_RESPONSE=100;
-const NO_INTERNET=101;
-const INVALID_FORMAT= 102;
-const UNKNOWN_ERROR=103;
+//Status code
+const DIO_SUCCESS=200;
+const DIO_CACHE=304;

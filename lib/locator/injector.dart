@@ -3,7 +3,9 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
+import '../constants/const.dart';
 import '../core/keys/env.dart';
+import '../features/auth/data/data_source/attractiondetail_api_services.dart';
 import '../features/auth/data/data_source/events_api_services.dart';
 import '../features/auth/data/data_source/attraction_api_services.dart';
 import '../features/auth/data/data_source/venues_api_services.dart';
@@ -18,7 +20,8 @@ Future<void> setuplocator() async {
       () => AttractionApiServices(locator()));
   locator.registerLazySingleton<ApiServices>(() => ApiServices(locator()));
   locator.registerLazySingleton<VenuesApiServices>(() => VenuesApiServices(locator()));
-  // locator.registerLazySingleton<SuperheroRepository>(() => SuperheroRepository());
+  locator.registerLazySingleton<AttractiondetailApiServices>(
+          () => AttractiondetailApiServices(locator()));
 }
 
 Future<Dio> getDio() async {
@@ -26,7 +29,7 @@ Future<Dio> getDio() async {
   String apiKey = Env.tmdbApiKey;
   var cacheOptions = await getCacheOptions();
   // Dio with logging interceptor and cache interceptor
-  return Dio(BaseOptions(baseUrl: 'https://app.ticketmaster.com/discovery/v2/'))
+  return Dio(BaseOptions(baseUrl: BASE_URL))
     ..interceptors.add(LogInterceptor(
       requestBody: true,
       responseBody: true,
