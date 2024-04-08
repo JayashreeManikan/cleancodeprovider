@@ -5,30 +5,42 @@ export 'package:cleancodeprovider/generated/json/attraction_detail_entity.g.dart
 
 @JsonSerializable()
 class AttractionDetailEntity {
-	late String name;
-	late String type;
-	late String id;
+	late String name='';
+	late String type='';
+	late String id='';
 	late bool test;
-	late String url;
+	late String url='';
 	late String locale;
 	late AttractionDetailExternalLinks externalLinks;
 	late List<String> aliases;
-	late List<AttractionDetailImages> images;
+	late List<AttractionDetailImages> images=[];
 	late List<AttractionDetailClassifications> classifications;
-	late AttractionDetailUpcomingEvents upcomingEvents;
+	late AttractionDetailUpcomingEvents upcomingEvents=AttractionDetailUpcomingEvents();
 	@JSONField(name: "_links")
 	late AttractionDetailLinks links;
 
-	AttractionDetailEntity();
+	AttractionDetailEntity({required this.name, required this.url, required this.type, required images});
 
-	factory AttractionDetailEntity.fromJson(Map<String, dynamic> json) => $AttractionDetailEntityFromJson(json);
+	factory AttractionDetailEntity.fromJson(Map<String, dynamic> json) {
+	return AttractionDetailEntity(
+	name: json['name'],
+			url: json['url'],
+			type: json['type'],
+			images:json['images'],
+	// Map other properties here
+	);
+}
 
-	Map<String, dynamic> toJson() => $AttractionDetailEntityToJson(this);
-
-	@override
-	String toString() {
-		return jsonEncode(this);
+	Map<String, dynamic> toJson() {
+		final Map<String, dynamic> data = Map<String, dynamic>();
+		data['name'] = this.name;
+		data['url']   = this.name;
+		data['type']  = this.type;
+		data['images']=this.images;
+		// Add other properties to the map
+		return data;
 	}
+
 }
 
 @JsonSerializable()
@@ -185,7 +197,7 @@ class AttractionDetailExternalLinksHomepage {
 @JsonSerializable()
 class AttractionDetailImages {
 	late String ratio;
-	late String url;
+	late String url='';
 	late int width;
 	late int height;
 	late bool fallback;

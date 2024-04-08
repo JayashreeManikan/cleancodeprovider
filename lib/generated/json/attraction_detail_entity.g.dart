@@ -3,7 +3,7 @@ import 'package:cleancodeprovider/features/auth/domain/models/attraction_detail_
 
 AttractionDetailEntity $AttractionDetailEntityFromJson(
     Map<String, dynamic> json) {
-  final AttractionDetailEntity attractionDetailEntity = AttractionDetailEntity();
+  final AttractionDetailEntity attractionDetailEntity = AttractionDetailEntity(name: '', url: '', type: '', images: []);
   final String? name = jsonConvert.convert<String>(json['name']);
   if (name != null) {
     attractionDetailEntity.name = name;
@@ -103,7 +103,7 @@ extension AttractionDetailEntityExtension on AttractionDetailEntity {
     AttractionDetailUpcomingEvents? upcomingEvents,
     AttractionDetailLinks? links,
   }) {
-    return AttractionDetailEntity()
+    return AttractionDetailEntity(name: '', url: '', type: '', images: [])
       ..name = name ?? this.name
       ..type = type ?? this.type
       ..id = id ?? this.id

@@ -41,7 +41,7 @@ extension VenuesEntityExtension on VenuesEntity {
 }
 
 VenuesEmbedded $VenuesEmbeddedFromJson(Map<String, dynamic> json) {
-  final VenuesEmbedded venuesEmbedded = VenuesEmbedded();
+  final VenuesEmbedded venuesEmbedded = VenuesEmbedded([]);
   final List<VenuesEmbeddedVenues>? venues = (json['venues'] as List<dynamic>?)
       ?.map(
           (e) =>
@@ -63,7 +63,7 @@ extension VenuesEmbeddedExtension on VenuesEmbedded {
   VenuesEmbedded copyWith({
     List<VenuesEmbeddedVenues>? venues,
   }) {
-    return VenuesEmbedded()
+    return VenuesEmbedded([])
       ..venues = venues ?? this.venues;
   }
 }
@@ -209,7 +209,7 @@ Map<String, dynamic> $VenuesEmbeddedVenuesToJson(VenuesEmbeddedVenues entity) {
   data['url'] = entity.url;
   data['locale'] = entity.locale;
   data['aliases'] = entity.aliases;
-  data['images'] = entity.images.map((v) => v.toJson()).toList();
+  data['images'] = entity.images?.map((v) => v.toJson()).toList();
   data['postalCode'] = entity.postalCode;
   data['timezone'] = entity.timezone;
   data['city'] = entity.city.toJson();

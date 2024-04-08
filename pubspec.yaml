@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  animated_text_kit: ^4.2.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,10 +43,19 @@ dependencies:
   dio_cache_interceptor: ^3.5.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  hero_text: ^0.0.1
+  envied: ^0.3.0
+  duration: ^3.0.13
+  get_it: ^7.6.8
+  hive: ^2.2.3
+  dio_cache_interceptor_hive_store: ^3.2.2
+  path_provider: ^2.1.2
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  envied_generator: ^0.3.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

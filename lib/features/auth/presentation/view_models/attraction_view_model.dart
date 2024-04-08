@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import '../../domain/models/attraction_detail_entity.dart';
+import '../../data/Respository/AttractionRespository.dart';
 import '../../domain/models/attractions_entity.dart';
-import '../../data/data_source/attraction_api_services.dart';
+
 
 class AttractionViewModel extends ChangeNotifier {
-  final AttractionApiServices _apiServices = AttractionApiServices();
+  final AttractionRepository _attractionRepository = AttractionRepository();
 
   late AttractionsEntity _attractions = AttractionsEntity();
-  late AttractionDetailEntity _attractionsdetail = AttractionDetailEntity();
+
   bool _loading = false;
   bool _firstTimeLoading = true;
   String _error = '';
@@ -18,13 +18,13 @@ class AttractionViewModel extends ChangeNotifier {
   String get error => _error;
 
   AttractionsEntity get attractions => _attractions;
-  AttractionDetailEntity get attractionsdetail => _attractionsdetail;
+
 
   Future<void> fetchEvent() async {
     try {
       _loading = true;
       //notifyListeners();
-      AttractionsEntity fetchedAttractions = await _apiServices.getAttractions();
+      AttractionsEntity fetchedAttractions = await _attractionRepository.getAttractionlist();
       _loading = false;
 
       // Check if the fetched events are different from the current events
@@ -32,8 +32,7 @@ class AttractionViewModel extends ChangeNotifier {
       // Compare oldEvents and newEvents
       bool hasChanges = false;
       int? oldAttractionsLength = _attractions.embedded.attractions.length;
-      int? newAttractionsLength = fetchedAttractions.embedded.attractions
-          .length;
+      int? newAttractionsLength = fetchedAttractions.embedded.attractions.length;
 
       if (oldAttractionsLength !=
           newAttractionsLength) {
@@ -62,21 +61,6 @@ class AttractionViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchAttractdetail(String id) async {
-    try {
-      _loading = true;
-      //notifyListeners();
-      AttractionDetailEntity fetchedAttractiondetail = await _apiServices.getAttractionsDetail('id');
-      _loading = false;
-      _attractionsdetail=fetchedAttractiondetail;
-      _firstTimeLoading = false;
-      notifyListeners();
 
-    } catch (e) {
-      _loading = false;
-      _error = e.toString();
-      //notifyListeners();
-    }
-  }
 
 }

@@ -6,7 +6,7 @@ export 'package:cleancodeprovider/generated/json/venues_entity.g.dart';
 @JsonSerializable()
 class VenuesEntity {
 	@JSONField(name: "_embedded")
-	late VenuesEmbedded embedded=VenuesEmbedded();
+	late VenuesEmbedded embedded=VenuesEmbedded([]);
 	@JSONField(name: "_links")
 	late VenuesLinks links;
 	late VenuesPage page;
@@ -25,9 +25,9 @@ class VenuesEntity {
 
 @JsonSerializable()
 class VenuesEmbedded {
-	late List<VenuesEmbeddedVenues> venues=[];
+	late List<VenuesEmbeddedVenues> venues;
 
-	VenuesEmbedded();
+	VenuesEmbedded(this.venues);
 
 	factory VenuesEmbedded.fromJson(Map<String, dynamic> json) => $VenuesEmbeddedFromJson(json);
 
@@ -41,14 +41,14 @@ class VenuesEmbedded {
 
 @JsonSerializable()
 class VenuesEmbeddedVenues {
-	late String name;
-	late String type;
+	late String name='';
+	late String type='';
 	late String id;
 	late bool test;
-	late String url;
+	late String url='';
 	late String locale;
 	late List<String> aliases;
-	late List<VenuesEmbeddedVenuesImages> images;
+	late List<VenuesEmbeddedVenuesImages>? images=[];
 	late String postalCode;
 	late String timezone;
 	late VenuesEmbeddedVenuesCity city;
@@ -83,7 +83,7 @@ class VenuesEmbeddedVenues {
 @JsonSerializable()
 class VenuesEmbeddedVenuesImages {
 	late String ratio;
-	late String url;
+	late String url='';
 	late int width;
 	late int height;
 	late bool fallback;

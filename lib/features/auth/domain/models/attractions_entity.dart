@@ -41,15 +41,15 @@ class AttractionsEmbedded {
 
 @JsonSerializable()
 class AttractionsEmbeddedAttractions {
-	late String name;
+	late String name='';
 	late String type;
-	late String id;
+	late String id='';
 	late bool test;
-	late String url;
+	late String url='';
 	late String locale;
 	late AttractionsEmbeddedAttractionsExternalLinks externalLinks;
 	late List<String> aliases;
-	late List<AttractionsEmbeddedAttractionsImages> images;
+	late List<AttractionsEmbeddedAttractionsImages> images=[];
 	late List<AttractionsEmbeddedAttractionsClassifications> classifications;
 	late AttractionsEmbeddedAttractionsUpcomingEvents upcomingEvents;
 	@JSONField(name: "_links")
@@ -170,7 +170,7 @@ class AttractionsEmbeddedAttractionsExternalLinksHomepage {
 @JsonSerializable()
 class AttractionsEmbeddedAttractionsImages {
 	late String ratio;
-	late String url;
+	late String url='';
 	late int width;
 	late int height;
 	late bool fallback;

@@ -40,13 +40,13 @@ class EventsEmbedded {
 
 @JsonSerializable()
 class EventsEmbeddedEvents {
-	late String name;
+	late String name='';
 	late String type;
-	late String id;
+	late String id='';
 	late bool test;
-	late String url;
+	late String url='';
 	late String locale;
-	late List<EventsEmbeddedEventsImages> images;
+	late List<EventsEmbeddedEventsImages> images=[];
 	late EventsEmbeddedEventsSales sales;
 	late EventsEmbeddedEventsDates dates;
 	late List<EventsEmbeddedEventsClassifications> classifications;
@@ -73,7 +73,7 @@ class EventsEmbeddedEvents {
 @JsonSerializable()
 class EventsEmbeddedEventsImages {
 	late String ratio;
-	late String url;
+	late String url='';
 	late int width;
 	late int height;
 	late bool fallback;

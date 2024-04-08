@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../data/Respository/VenuesRepository.dart';
 import '../../data/data_source/venues_api_services.dart';
 import '../../domain/models/events_entity.dart';
 import '../../domain/models/venues_entity.dart';
 
 class VenueViewModel extends ChangeNotifier {
-  final VenuesApiServices _apiServices = VenuesApiServices();
+  final venuesRepository _venuesRepository= venuesRepository();
 
   late VenuesEntity _venues=VenuesEntity();
   bool _loading = false;
@@ -25,7 +26,7 @@ class VenueViewModel extends ChangeNotifier {
       _loading = true;
       //notifyListeners();
       // _events = (await _apiServices.getEvents());
-      VenuesEntity fetchedVenues =  (await _apiServices.getVenues());
+      VenuesEntity fetchedVenues =  (await _venuesRepository.getVenueslist());
       _loading = false;
       // Check if the fetched events are different from the current events
 
@@ -33,7 +34,6 @@ class VenueViewModel extends ChangeNotifier {
       bool hasChanges = false;
       int? oldVenuesLength = _venues.embedded.venues.length;
       int? newVenuesLength = fetchedVenues.embedded.venues.length;
-      if (oldVenuesLength != null && newVenuesLength != null) {
         if (oldVenuesLength != newVenuesLength) {
           hasChanges = true;
         } else {
@@ -45,7 +45,6 @@ class VenueViewModel extends ChangeNotifier {
             }
           }
         }
-      }
       print('State Has Changed ? : $hasChanges');
 
       if(hasChanges || _firstTimeLoading) {
